@@ -1,0 +1,60 @@
+
+body {
+  background: #FAF9B4 !important;
+}
+body > div a {
+  color: #666B07 !important;
+}
+.navbar-inverse {
+  background: #A8A602 !important;
+  color: #A8A602 !important;
+  border-color: white !important;
+}
+#bj-what-is-box {
+  background: #FAF9E1 !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: #916B03 !important;
+}
+.btn-info, .btn-primary {
+  background: #D5E002 !important;
+  border-color: #D5E002 !important;
+  color: black !important;
+}
+.btn-success{
+  background: #2A8C03 !important;
+  border-color: #2A8C03 !important;
+  color: white !important;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: #636900 !important;
+}
+.alert-info {
+  background-color: #636900 !important;;
+  border-color: #636900 !important;
+  color: white !important;
+}
+.alert-info a {
+  color: yellow !important;
+}
+.alert-warning {
+  background-color: #8C5103;
+  border-color: #8C5103;
+  color: white;
+}
+.alert-warning a {
+  color: yellow !important;
+}
+
