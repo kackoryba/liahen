@@ -1,8 +1,9 @@
 # -*- coding: utf8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+
 from tasks.models import Task
-# Create your models here.
+
 
 class Submit(models.Model):
     OK = 'OK'
@@ -17,65 +18,65 @@ class Submit(models.Model):
         'CE': 'Compilation error',
         'RE': 'Runtime exception',
         'SE': 'Security exception',
-        }
+    }
 
     LANGUAGE_CHOICES = (
-         (".", u"""Zisti podľa prípony"""),
-         (".cc", "C++ (.cpp/.cc)"),
-         (".pas", "Pascal (.pas/.dpr)"),
-         (".c", "C (.c)"),
-         (".py", "Python 2.5 (.py)"),
-         (".py3", "Python 3.1 (.py3)"),
-         (".hs", "Haskell (.hs)"),
-         (".cs", "C# (.cs)"),
-         (".java", "Java (.java)")
-        )
+        (".", u"""Zisti podľa prípony"""),
+        (".cc", "C++ (.cpp/.cc)"),
+        (".pas", "Pascal (.pas/.dpr)"),
+        (".c", "C (.c)"),
+        (".py", "Python 2.5 (.py)"),
+        (".py3", "Python 3.1 (.py3)"),
+        (".hs", "Haskell (.hs)"),
+        (".cs", "C# (.cs)"),
+        (".java", "Java (.java)")
+    )
 
     EXTMAPPING = {
         ".cpp": ".cc",
-        ".cc":  ".cc",
-        ".pp":  ".pas",
+        ".cc": ".cc",
+        ".pp": ".pas",
         ".pas": ".pas",
         ".dpr": ".pas",
-        ".c":   ".c",
-        ".py":  ".py",
+        ".c": ".c",
+        ".py": ".py",
         ".py3": ".py3",
-        ".hs":  ".hs",
-        ".cs":  ".cs",
-        ".java":".java"
-        }
-        
-    user = models.ForeignKey(User)  #clovek
-    task = models.ForeignKey(Task)  #uloha
-    timestamp = models.DateTimeField(   #cas submitu
+        ".hs": ".hs",
+        ".cs": ".cs",
+        ".java": ".java"
+    }
+
+    user = models.ForeignKey(User)  # clovek
+    task = models.ForeignKey(Task)  # uloha
+    timestamp = models.DateTimeField(  # cas submitu
         auto_now_add=True
-        )
-    message = models.CharField( #pekna sprava z testovaca (nie skratka)
-        max_length = 256, 
+    )
+    message = models.CharField(  # pekna sprava z testovaca (nie skratka)
+        max_length=256,
         default=QUEUE
-        )
-    scores = models.FloatField( #ak je uloha na body
-        blank=True, 
+    )
+    scores = models.FloatField(  # ak je uloha na body
+        blank=True,
         null=True
-        )
-    runtime = models.IntegerField(  #cas behu
-        blank=True, 
-        default=-1, 
+    )
+    runtime = models.IntegerField(  # cas behu
+        blank=True,
+        default=-1,
         null=True
-        )
-    memory = models.IntegerField(   #spotreba pamate
-        blank=True, 
-        default=-1, 
+    )
+    memory = models.IntegerField(  # spotreba pamate
+        blank=True,
+        default=-1,
         null=True
-        )
-    language = models.CharField(    #progr. jazyk
-        max_length = 20,
-        choices = LANGUAGE_CHOICES        
-        )
-    log = models.TextField (    #detailny na vstupy
+    )
+    language = models.CharField(  # progr. jazyk
+        max_length=20,
+        choices=LANGUAGE_CHOICES
+    )
+    log = models.TextField(  # detailny na vstupy
         default=""
-        )
+    )
 
     def __unicode__(self):
-        return u'%s | %s | %s | %s' % (self.user, self.task, self.timestamp.strftime('%d-%m-%Y %H:%M:%S'), self.message)
-    
+        return u'%s | %s | %s | %s' % (
+            self.user, self.task, self.timestamp.strftime('%d-%m-%Y %H:%M:%S'), self.message)

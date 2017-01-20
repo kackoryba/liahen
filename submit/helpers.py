@@ -1,16 +1,19 @@
-from django.conf import settings
-from submit.models import Submit
-from time import time
 import os
-import random
 import socket
+from time import time
+
+from django.conf import settings
+
+from submit.models import Submit
+
 
 # koncovka -> jazyk
 def get_lang_from_filename(filename):
     ext = os.path.splitext(filename)[1].lower()
-    if not ext in Submit.EXTMAPPING:
+    if ext not in Submit.EXTMAPPING:
         return False
     return Submit.EXTMAPPING[ext]
+
 
 # posielanie submitu na testovac
 # vracia dvojicu (ci je vsetko OK, detaily(id submitu/aka chyba))
@@ -21,14 +24,13 @@ def process_submit(f, task, language, user):
             return (False, 'file-error')
         language = lang
 
-    submit = Submit (language=language, user = user, task = task)
+    submit = Submit(language=language, user=user, task=task)
     submit.save()
 
     data = f.read()
-    user_id = 'liahen3-'+str(user.username)
-    #task_id = 'liahen3-'+str(task.id)
+    user_id = 'liahen3-' + str(user.username)
     task_id = str(task.id)
-    correct_filename = task_id+language
+    correct_filename = task_id + language
     original_name = f.name
 
     timestamp = int(time())
@@ -56,7 +58,7 @@ def process_submit(f, task, language, user):
     except OSError:
         pass
 
-    os.chmod(path, 0777)
+    os.chmod(path, 0o777)
 
     # submity si odlozime aj u seba
     datafile = open(path + '/' + str(submit.id) + '.data', 'w')
@@ -66,15 +68,15 @@ def process_submit(f, task, language, user):
     rawfile = open(path + '/' + str(submit.id) + '.raw', 'w')
     rawfile.write(raw)
     rawfile.close()
- 
+
     # posleme na testovac Exeriment
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        sock.connect(('10.0.0.3', 12347))    
-    except Exception, e:
-        return (False, 'connect-error')
-        
-    sock.send(raw)    
+        sock.connect(('10.0.0.3', 12347))
+    except Exception:  # todo: log the error
+        return False, 'connect-error'
+
+    sock.send(raw)
     sock.close()
 
-    return (True, submit.id)
+    return True, submit.id
