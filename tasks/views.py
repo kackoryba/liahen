@@ -12,7 +12,9 @@ from submit.models import Submit
 from django import forms
 from submit import helpers
 import pygraphviz as pgv
-from datetime import datetime, date, time 
+from datetime import datetime, date, time
+
+from django.utils import timezone
     
 @login_required
 def task_set_view(request, pk): #zobrazenie sady ako zoznam
@@ -222,7 +224,7 @@ def task_view(request, pk): #zadanie ulohy
             error = 'file-error'
     
     #pridame seen
-    stalker = Stalker (user = request.user, task = task, seen = datetime.now())
+    stalker = Stalker (user = request.user, task = task, seen = timezone.now())
     stalker.save()
     
     form = TaskSubmitForm()

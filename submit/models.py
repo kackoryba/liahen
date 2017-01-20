@@ -1,8 +1,6 @@
 # -*- coding: utf8 -*-
 from django.db import models
 from django.contrib.auth.models import User
-from tasks.models import Task
-# Create your models here.
 
 class Submit(models.Model):
     OK = 'OK'
@@ -46,7 +44,7 @@ class Submit(models.Model):
         }
         
     user = models.ForeignKey(User)  #clovek
-    task = models.ForeignKey(Task)  #uloha
+    task = models.ForeignKey('tasks.Task')  #uloha
     timestamp = models.DateTimeField(   #cas submitu
         auto_now_add=True
         )
