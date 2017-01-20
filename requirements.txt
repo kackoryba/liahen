@@ -10,7 +10,6 @@ httplib2==0.9
 oauth2==1.5.211
 oauthlib==0.6.1
 psycopg2==2.5.3
-pygraphviz==1.2
 python-openid==2.2.5
 python-social-auth==0.1.23
 requests==2.3.0
