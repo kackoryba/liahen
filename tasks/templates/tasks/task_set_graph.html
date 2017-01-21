@@ -1,16 +1,10 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+
+{% load staticfiles widgets %}
 {% block title %}{{ task_set.title }}{% endblock %}
-{% load widgets %}
+
 {% block content %}
-{% if task_set.public|is_false %} <div class = "non-public">{% endif %}
-    {% include 'tasks/task_set_header.html' %}
-    <div class="row">
-        {{ graph|safe }}
-    </div>
-{% if task_set.public|is_false %} </div>{% endif %}
-    
-<!--<object width="380" height="100" data="http://www.petercollingridge.co.uk/sites/files/peter/tooltip_final_0.svg" type="image/svg+xml"></object>    -->
-    
- 
+    {% if not task_set.public %}<div class = "non-public">{% endif %}
+        {% include 'tasks/task_set_header.html' %}
+    {% if not task_set.public %}</div>{% endif %}
 {% endblock content %}

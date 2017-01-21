@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django import forms
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
@@ -81,11 +82,13 @@ def task_set_graph_view(request, pk=False):  # zobrazenie sady ako graf
 
     # vytvori sa alebo updatne aktualna sada
     act = Active.objects.get_or_create(user=request.user)
+
     a = act[0]
     a.task_set = task_set
     a.save()
 
     # zoznam uloh v sade; iba tie, o ktorych moze vediet
+
     q = Task.objects.filter(task_set=task_set)
     q_ids = [o.id for o in q if Task.can_see(o, request.user, 'g')]
     tasks = q.filter(id__in=q_ids)
