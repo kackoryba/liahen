@@ -34,8 +34,8 @@ def task_format(value, autoescape=None):
     return mark_safe('<a href= "%s">%s</a>' % (url, esc(value)))
 
 
-@register.filter(name='timestamp_format', needs_autoescape=True)
-def timestamp_format(value, autoescape=None):
+@register.filter(name='timestamp_format')
+def timestamp_format(value):
     return localtime(value).strftime("%d-%m-%Y %H:%M:%S")
 
 
@@ -101,14 +101,14 @@ def language_format(value, autoescape=None):
     return esc(value)
 
 
-@register.filter(name='detail_format', needs_autoescape=True)
-def detail_format(value, autoescape=None):
+@register.filter(name='detail_format')
+def detail_format(value):
     url = reverse('submit:protocol', args=(value,))
     return mark_safe('<a href= "%s"><span class="glyphicon glyphicon-search"></span>&nbsp;detaily</a>' % (url))
 
 
-@register.filter(name='log_format', needs_autoescape=True)
-def log_format(value, autoescape=None):
+@register.filter(name='log_format')
+def log_format(value):
     if not value:
         return ''
     elif value[0] == '<':
