@@ -58,7 +58,7 @@ def judge_view(request, type, task='', user=''):  #rozne filtre na tabulku submi
     act = Active.objects.get_or_create(user = request.user)
     active_task = act[0].task.id
         
-    return render_to_response('submit/judge.html', 
+    return render(request, 'submit/judge.html',
                              {
                              'active_app':'submit', #kvoli menu hore
                              'submits':submits, #tabulka submitov
@@ -69,7 +69,7 @@ def judge_view(request, type, task='', user=''):  #rozne filtre na tabulku submi
                              'req_user':request.user,   #prihlaseny user
                              'active_task':active_task,   #aktivna uloha
                              }, 
-                             context_instance=RequestContext(request))
+                             )
                               
 @login_required
 def protocol_view(request, pk):     #protokol z testovania
@@ -83,13 +83,13 @@ def protocol_view(request, pk):     #protokol z testovania
 
     source_code = open(source_path, 'r').read()
     
-    return render_to_response('submit/protocol.html',
+    return render(request, 'submit/protocol.html',
                               {
                                #'active_app':'submit',
                                'submit':submit,
                                'source_code':source_code,
                                },
-                              context_instance=RequestContext(request))
+                              )
 
 @csrf_exempt
 def update_submit(request): #spracovanie submitu po odpovedi testovaca

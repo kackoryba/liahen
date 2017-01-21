@@ -1,10 +1,8 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
-from django.views.generic import TemplateView
 
-admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     #uvodne kecy, kontakt, demo, faq,...
     url(r'^', include('about.urls', namespace="about")), 
     #zadania, riesenia uloh; sady
@@ -16,4 +14,4 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     #login
     url(r'^account/', include('ksp_login.urls')),    
-)
+]

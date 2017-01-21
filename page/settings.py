@@ -33,12 +33,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tasks',
-    'submit',
-    'ksp_login',
-    'social.apps.django_app.default',
-    'about',
     'django_extensions',
+    'social_django',
+    'ksp_login',
+
+    'about.apps.AboutConfig',
+    'tasks.apps.TasksConfig',
+    'submit.apps.SubmitConfig',
     )
 
 MIDDLEWARE_CLASSES = (
@@ -116,11 +117,7 @@ LOGIN_REDIRECT_URL = '/tasks'
 LOGIN_URL = '/account/login/'
 
 AUTHENTICATION_BACKENDS = (
-#    'social.backends.facebook.FacebookOAuth2',
-    'social.backends.google.GoogleOpenId',
-    'social.backends.github.GithubOAuth2',
     'ksp_login.backends.LaunchpadAuth',
-    'social.backends.open_id.OpenIdAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
 

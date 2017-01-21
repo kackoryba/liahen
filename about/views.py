@@ -16,5 +16,4 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def intro_view(request):    
-    return render_to_response('about/intro.html',
-                              context_instance=RequestContext(request))
+    return render(request, 'about/intro.html')

@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from tasks import views
 from tasks.models import TaskSet, Task, Stalker

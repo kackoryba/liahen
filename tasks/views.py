@@ -58,7 +58,7 @@ def task_set_view(request, pk): #zobrazenie sady ako zoznam
             elif task.type == Task.READ:
                 task_cat[1]['tasks'].append(task)
     
-    return render_to_response('tasks/task_set.html',
+    return render(request, 'tasks/task_set.html',
                               {
                                'active_app':'tasks',    #kvoli havnemu menu
                                'task_set':task_set, #aktualna sada
@@ -67,7 +67,7 @@ def task_set_view(request, pk): #zobrazenie sady ako zoznam
                                'categories': task_cat,  #ulohy podla kategorii
                                'tasks':tasks,   #danej sady
                                },
-                              context_instance=RequestContext(request))
+                              )
 
 @login_required
 def task_set_graph_view(request, pk=False): #zobrazenie sady ako graf
@@ -186,7 +186,7 @@ def task_set_graph_view(request, pk=False): #zobrazenie sady ako graf
     #vymazeme hlavicky, lebo neincludujeme svg object, ale rovno ho kreslime; inak by sme neboli html valid
     graph = "\n".join(G.draw(format='svg').split('\n')[3:])
     
-    return render_to_response('tasks/task_set_graph.html',
+    return render(request, 'tasks/task_set_graph.html',
                               {
                               'graph':graph, #data pre graf (svg)
                               'active_app':'tasks', #hlavne menu 
@@ -194,7 +194,7 @@ def task_set_graph_view(request, pk=False): #zobrazenie sady ako graf
                               'sets': sets, #vsetky sady
                               'style':'graph',  #styl zobrazovania sady
                               },
-                              context_instance=RequestContext(request))
+                              )
 
 @login_required
 def task_view(request, pk): #zadanie ulohy
@@ -231,7 +231,7 @@ def task_view(request, pk): #zadanie ulohy
     submits = Submit.objects.filter(task = pk, user = request.user).order_by('-timestamp')
     is_solved = Task.is_solved(task, request.user)
 
-    return render_to_response('tasks/task.html',
+    return render(request, 'tasks/task.html',
                             {
                              'active_app':'tasks',  #hlavne menu
                              'active':'text',   #ci si pozerame zadanie alebo vzorak
@@ -242,7 +242,7 @@ def task_view(request, pk): #zadanie ulohy
                              'error':error,    #chyba suboru / nepodarene pripojenie na testovac
                              'req_user': request.user,    #momentalne lognuty (kvoli odkazu na riesenie pre adminov)
                              },
-                            context_instance=RequestContext(request))            
+                            )
 
 @login_required
 def example_solution_view(request, pk):     #vzorak
@@ -254,11 +254,11 @@ def example_solution_view(request, pk):     #vzorak
     if task.type == task.READ:
         raise Http404
 
-    return render_to_response('tasks/example_solution.html',
+    return render(request, 'tasks/example_solution.html',
                               {
                                'is_solved':Task.is_solved(task, request.user),  #kvoli linku v taboch 
                                'active_app':'tasks',    #hlavne menu 
                                'active':'ex_sol',   #ci sa zobrazuje zadanie alebo vzorak
                                'task': task,
                                },
-                              context_instance=RequestContext(request))
+                              )
