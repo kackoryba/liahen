@@ -4,7 +4,7 @@ from django.contrib import admin
 
 urlpatterns = [
     # uvodne kecy, kontakt, demo, faq,...
-    url(r'^', include('about.urls', namespace="about")), 
+    url(r'^', include('about.urls', namespace="about")),
     # zadania, riesenia uloh; sady
     url(r'^tasks/', include('tasks.urls', namespace="tasks")),
     # submity, statistiky

@@ -41,12 +41,12 @@ class Submit(models.Model):
         ".py3": ".py3",
         ".hs": ".hs",
         ".cs": ".cs",
-        ".java":".java"
-        }
-        
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)  #clovek
-    task = models.ForeignKey('tasks.Task')  #uloha
-    timestamp = models.DateTimeField(  #cas submitu
+        ".java": ".java"
+    }
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)  # clovek
+    task = models.ForeignKey('tasks.Task')  # uloha
+    timestamp = models.DateTimeField(  # cas submitu
         auto_now_add=True
     )
     message = models.CharField(  # pekna sprava z testovaca (nie skratka)
@@ -76,4 +76,5 @@ class Submit(models.Model):
     )
 
     def __unicode__(self):
-        return u'%s | %s | %s | %s' % (self.user, self.task, self.timestamp.strftime('%d-%m-%Y %H:%M:%S'), self.message)
+        return u'%s | %s | %s | %s' % (
+            self.user, self.task, self.timestamp.strftime('%d-%m-%Y %H:%M:%S'), self.message)

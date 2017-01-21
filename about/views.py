@@ -1,7 +1,6 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 
 
 # Create your views here.
-def intro_view(request):    
+def intro_view(request):
     return render(request, 'about/intro.html')

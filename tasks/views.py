@@ -2,10 +2,8 @@ from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django import forms
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext
+from django.shortcuts import get_object_or_404, render
 
 from submit import helpers
 from submit.forms import TaskSubmitForm
@@ -54,18 +52,17 @@ def task_set_view(request, pk):  # zobrazenie sady ako zoznam
                 task_cat[0]['tasks'].append(task)
             elif task.type == Task.READ:
                 task_cat[1]['tasks'].append(task)
-               
-    return render(request, 'tasks/task_set.html',
-                              {
-                               'active_app':'tasks',    #kvoli havnemu menu
-                               'task_set':task_set, #aktualna sada
-                               'sets': sets,    #viditelne sady v taboch
-                               'style':'list',  #styl zobrazovania sady
-                               'categories': task_cat,  #ulohy podla kategorii
-                               'tasks':tasks,   #danej sady
-                               },
-                              )
 
+    return render(request, 'tasks/task_set.html',
+                  {
+                      'active_app': 'tasks',  # kvoli havnemu menu
+                      'task_set': task_set,  # aktualna sada
+                      'sets': sets,  # viditelne sady v taboch
+                      'style': 'list',  # styl zobrazovania sady
+                               'categories': task_cat,  # ulohy podla kategorii
+                               'tasks': tasks,  # danej sady
+                  },
+                  )
 
 
 @login_required
@@ -112,13 +109,13 @@ def task_set_graph_view(request, pk=False):  # zobrazenie sady ako graf
             invis_tasks.append(task)
 
     return render(request, 'tasks/task_set_graph.html',
-                              {
-                                  'active_app': 'tasks',  # hlavne menu
-                                  'task_set': task_set,  # aktualna sada
-                                  'sets': sets,  # vsetky sady
-                                  'style': 'graph',  # styl zobrazovania sady
-                              },
-                              )
+                  {
+                      'active_app': 'tasks',  # hlavne menu
+                      'task_set': task_set,  # aktualna sada
+                      'sets': sets,  # vsetky sady
+                      'style': 'graph',  # styl zobrazovania sady
+                  },
+                  )
 
 
 @login_required
@@ -161,17 +158,17 @@ def task_view(request, pk):  # zadanie ulohy
     is_solved = Task.is_solved(task, request.user)
 
     return render(request, 'tasks/task.html',
-                            {
-                             'active_app':'tasks',  #hlavne menu
-                             'active':'text',   #ci si pozerame zadanie alebo vzorak
-                             'is_solved':is_solved, #kvoli linku v taboch
-                             'task': task, 
-                             'form': form,  #submitovaci formular
-                             'submits':submits, #doterajsie submity v ulohe
-                             'error':error,    #chyba suboru / nepodarene pripojenie na testovac
-                             'req_user': request.user,    #momentalne lognuty (kvoli odkazu na riesenie pre adminov)
-                             },
-                            )
+                  {
+                      'active_app': 'tasks',  # hlavne menu
+                      'active': 'text',  # ci si pozerame zadanie alebo vzorak
+                      'is_solved': is_solved,  # kvoli linku v taboch
+                      'task': task,
+                      'form': form,  # submitovaci formular
+                      'submits': submits,  # doterajsie submity v ulohe
+                      'error': error,  # chyba suboru / nepodarene pripojenie na testovac
+                      'req_user': request.user,  # momentalne lognuty (kvoli odkazu na riesenie pre adminov)
+                  },
+                  )
 
 
 @login_required
@@ -185,11 +182,10 @@ def example_solution_view(request, pk):  # vzorak
         raise Http404
 
     return render(request, 'tasks/example_solution.html',
-                              {
-                               'is_solved':Task.is_solved(task, request.user),  #kvoli linku v taboch 
-                               'active_app':'tasks',    #hlavne menu 
-                               'active':'ex_sol',   #ci sa zobrazuje zadanie alebo vzorak
-                               'task': task,
-                               },
-                              )
-
+                  {
+                      'is_solved': Task.is_solved(task, request.user),  # kvoli linku v taboch
+                      'active_app': 'tasks',  # hlavne menu
+                      'active': 'ex_sol',  # ci sa zobrazuje zadanie alebo vzorak
+                      'task': task,
+                  },
+                  )

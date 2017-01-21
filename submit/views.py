@@ -3,8 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext
+from django.shortcuts import get_object_or_404, render
 
 from tasks.models import Task, Active
 from submit.models import Submit
@@ -56,20 +55,20 @@ def judge_view(request, type, task='', user=''):
     # aktivna uloha sa defaultne zobrazi vo filtri podla ulohy
     act = Active.objects.get_or_create(user=request.user)
     active_task = act[0].task.id
-    
+
     return render(request, 'submit/judge.html',
-                             {
-                             'active_app':'submit', #kvoli menu hore
-                             'submits':submits, #tabulka submitov
-                             'type':type,   #typ filtra
-                             'tasks':tasks, #viditelne ulohy pre search-box podla ulohy
-                             'cur_task':cur_task,   #filtre podla ulohy
-                             'cur_user':cur_user,   #filtre podla cloveka
-                             'req_user':request.user,   #prihlaseny user
-                             'active_task':active_task,   #aktivna uloha
-                             }, 
-                             )
-                              
+                  {
+                      'active_app': 'submit',  # kvoli menu hore
+                      'submits': submits,  # tabulka submitov
+                      'type': type,  # typ filtra
+                      'tasks': tasks,  # viditelne ulohy pre search-box podla ulohy
+                      'cur_task': cur_task,  # filtre podla ulohy
+                      'cur_user': cur_user,  # filtre podla cloveka
+                      'req_user': request.user,  # prihlaseny user
+                      'active_task': active_task,  # aktivna uloha
+                  },
+                  )
+
 
 @login_required
 def protocol_view(request, pk):  # protokol z testovania
@@ -85,13 +84,12 @@ def protocol_view(request, pk):  # protokol z testovania
     source_code = open(source_path, 'r').read()
 
     return render(request, 'submit/protocol.html',
-                              {
-                               #'active_app':'submit',
-                               'submit':submit,
-                               'source_code':source_code,
-                               },
-                              )
-
+                  {
+                      # 'active_app':'submit',
+                      'submit': submit,
+                      'source_code': source_code,
+                  },
+                  )
 
 
 @csrf_exempt
