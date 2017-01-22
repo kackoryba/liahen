@@ -72,8 +72,15 @@ def task_set_graph_view(request, pk=False):  # zobrazenie sady ako graf
 
     # ak sme nespecifikovali sadu (menu->Ulohy), zobrazi sa/vytvori sa aktivna
     if not pk:
-        act = Active.objects.get_or_create(user=request.user)
-        pk = act[0].task_set.id
+        act, _ = Active.objects.get_or_create(user=request.user)
+
+        # In case the active task was hidden, set the default task as active.
+        if not act.task.can_see(request.user, 'g') or not act.task_set.can_see(request.user):
+            act.task_set = TaskSet.objects.get(id='intro')
+            act.task = Task.objects.get(id='submit')
+            act.save()
+
+        pk = act.task_set.id
 
     task_set = get_object_or_404(TaskSet, pk=pk)
 
