@@ -9,7 +9,7 @@
         </div>
     {% endif %}
     <form class="form-horizontal" method="post" action="{% url 'django.contrib.auth.views.login' %}">
- 
+
         {% csrf_token %}
         <fieldset>
             <div class="form-group">
@@ -33,4 +33,4 @@
             </div>
         </fieldset>
     </form>
-{% endblock %} 
+{% endblock %}

@@ -3,16 +3,16 @@
     <h2>{{ task.title }} ({{ task.id }})</h2>
     <ul class="nav nav-tabs">
         <li {% if active == 'text' %} class = "active" {% endif %}><a href = "{% url 'tasks:task' task.id %}"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Zadanie</a></li>
-        
-        <li {% if active == 'ex_sol' %} 
+
+        <li {% if active == 'ex_sol' %}
                 class = "active"
             {% elif not is_solved %}
-                {% if not req_user.is_active or not req_user.is_staff %} 
+                {% if not req_user.is_active or not req_user.is_staff %}
                     class = "disabled"
                 {% endif %}
             {% endif %}
             >
-            
+
             {% if is_solved %}
                 <a href = "{% url 'tasks:example_solution' task.id %}"><span class="glyphicon glyphicon-ok"></span>&nbsp;
             {% else %}

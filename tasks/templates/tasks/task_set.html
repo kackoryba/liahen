@@ -9,11 +9,11 @@
         {% for cat in categories %}
             {% if cat.tasks %}
                 <div class = "col-lg-3">
-                    <div class = "panel 
+                    <div class = "panel
                         {% if cat.type == 'act_sub' %}panel-danger
                         {% elif cat.type == 'act_read' %}panel-primary
                         {% elif cat.type == 'sol_sub' %}panel-success
-                        {% elif cat.type == 'sol_read' %}panel-info  
+                        {% elif cat.type == 'sol_read' %}panel-info
                         {% endif %}">
                         <div class = "panel-heading">
                             <h4 class = "panel-title">
@@ -22,10 +22,10 @@
                                 {% elif cat.type == 'act_read' %}
                                     <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Neprečítané texty
                                 {% elif cat.type == 'sol_sub' %}
-                                    <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Vyriešené úlohy 
+                                    <span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Vyriešené úlohy
                                 {% elif cat.type == 'sol_read' %}
                                     <span class="glyphicon glyphicon-flag"></span>&nbsp;Prečítané texy
-                                {% endif %} 
+                                {% endif %}
                                 ({{ cat.tasks|length }})
                             </h4>
                         </div>
@@ -56,5 +56,5 @@
         {% endfor %}
     </div>
 {% if task_set.public|is_false %}</div>{% endif %}
-    
+
 {% endblock content %}

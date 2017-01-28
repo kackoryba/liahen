@@ -8,9 +8,9 @@
 <div class="panel panel-info">
     <div class="panel-heading">
         {% if type == 'me' %}
-            <h4 class="panel-title">Všetky moje submity</h4>        
+            <h4 class="panel-title">Všetky moje submity</h4>
         {% elif type == 'now' %}
-            <h4 class="panel-title">Najčerstvejšie výsledky z testovača</h4>        
+            <h4 class="panel-title">Najčerstvejšie výsledky z testovača</h4>
         {% elif type == 'task' %}
             <div class = "row" style = "margin-left:0; margin-left:0;" >
                 <div class = "pull-left">
@@ -25,13 +25,13 @@
                                 <option value="{% url 'submit:task' item.id %}#submits">{{ item.title }} ({{ item.id }})</option>
                             {% endfor %}
                         </optgroup>
-                    {% endfor %}                  
+                    {% endfor %}
                 </select>
             </div>
         {% elif type == 'user' %}
-            <h4 class="panel-title">Všetky submity človeka <b>{{ cur_user|user_format }}</b>&nbsp;&nbsp;&nbsp;<i class = "text-muted">(parametre sa menia intuitívne hore v linku)</i></h4>                    
+            <h4 class="panel-title">Všetky submity človeka <b>{{ cur_user|user_format }}</b>&nbsp;&nbsp;&nbsp;<i class = "text-muted">(parametre sa menia intuitívne hore v linku)</i></h4>
         {% elif type == 'user_task' %}
-            <h4 class="panel-title">Všetky submity človeka <b>{{ cur_user|user_format }}</b> v úlohe <i>{{ cur_task|task_format }}</i>&nbsp;&nbsp;&nbsp;<i class = "text-muted">(parametre sa menia intuitívne hore v linku)</i> </h4>                 
+            <h4 class="panel-title">Všetky submity človeka <b>{{ cur_user|user_format }}</b> v úlohe <i>{{ cur_task|task_format }}</i>&nbsp;&nbsp;&nbsp;<i class = "text-muted">(parametre sa menia intuitívne hore v linku)</i> </h4>
         {% endif %}
     </div>
     <div class = "panel-body">
@@ -56,7 +56,7 @@
                     <td>{{ submit.message|message_format }}</td>
                     <td>{% if req_user.is_active and req_user.is_staff or req_user == submit.user %}{{ submit.id|detail_format }}{% endif %}</td>
                 </tr>
-                {% endfor %}                
+                {% endfor %}
             </tbody>
         </table>
     </div>

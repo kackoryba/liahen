@@ -4,18 +4,18 @@
 <!-- <p>Reklama: Nedostal si ešte ani jedno {{ "OK"|message_format }} a netušíš, čo robíš zle? Položka "Pomoc" v menu je tu presne na to! (A ak ani tá nepomôže, treba sa opýtať.)</p> -->
 <ul class="nav nav-tabs">
     {% if type == "me" %}<li class="active">{% else %}<li>{% endif %}<a href="{% url 'submit:index' %}"><span class="glyphicon glyphicon-user"></span>&nbsp;Moje</a></li>
-    
+
     {% if type == "now" %}<li class="active">{% else %}<li>{% endif %}<a href="{% url 'submit:now' %}"><span class="glyphicon glyphicon-time"></span>&nbsp;Aktuálne</a></li>
-    
+
     {% if type == "task"%}<li class="active">{% else %}<li>{% endif %}
             <a href="{% url 'submit:task' active_task %}"><span class="glyphicon glyphicon-check"></span>&nbsp;Úspešní riešitelia úlohy...</a>
-    </li>  
+    </li>
     {% if req_user.is_staff and req_user.is_active %}
         {% if type == "user"%}<li class="active">{% else %}<li>{% endif %}
                 <a href="{% url 'submit:user' req_user%}"><span class="glyphicon glyphicon-user"></span>&nbsp;Všetky submity riešiteľa...</a>
-        </li>  
+        </li>
         {% if type == "user_task"%}<li class="active">{% else %}<li>{% endif %}
                 <a href="{% url 'submit:user_task' req_user active_task %}"><span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-tasks"></span>&nbsp;Všetky submity riešiteľa... v úlohe...</a>
-    </li>  
+    </li>
     {% endif %}
 </ul>

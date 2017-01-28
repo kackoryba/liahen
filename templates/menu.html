@@ -17,7 +17,7 @@
             <li {% if active_app == 'tasks' %}class = "active"{% endif %}><a href="{% url 'tasks:index' %}"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Úlohy</a></li>
             <li {% if active_app == 'submit' %}class = "active"{% endif %}><a href="{% url 'submit:index'%}"><span class="glyphicon glyphicon-envelope"></span>&nbsp;Submity</a></li>
             <li><a href=""><span class="glyphicon glyphicon-certificate"></span>&nbsp;Achievementy</a></li>
-        </ul>            
+        </ul>
         {% include "ksp_login/parts/login_box.html" %}
         <ul class="nav navbar-nav navbar-right">
             <li><a href = "{% url 'about:intro' %}#contact" ><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;Kontakt</a></li>
