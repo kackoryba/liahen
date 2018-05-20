@@ -1,3 +1,28 @@
+body
+{
+    overflow-x: hidden;
+}
+
+body, h1, h2, h3
+{
+    font-family: 'Source Sans Pro';
+}
+
+h1, h2, h3, h4, h5, h6
+{
+    color: #001142;
+}
+
+p
+{
+    text-align: justify;
+}
+
+.page-header h2
+{
+    text-align: center;
+}
+
 .table td, .table th, .io-table {
     border: 1px solid #ddd;
 }
@@ -57,4 +82,199 @@ input[type="text"], input[type="email"], input[type="password"] {
 .prettyprint {
     margin-top: 16px;
     margin-bottom: 16px;
+}
+
+#l-intro-whatis
+{
+    background: url('../images/intro-bg.jpg');
+    background-attachment: fixed;
+    padding: 0rem 3rem;
+    background-size: cover;
+    font-family: 'Source Sans Pro';
+    width: 100%;
+}
+
+#l-intro-whatis h2
+{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 5rem;
+    margin: 0;
+    font-family: 'Source Sans Pro';
+}
+
+.l-inverse-text h1,
+.l-inverse-text h2,
+.l-inverse-text p
+{
+    color: white !important;
+}
+
+#l-intro-whatis .l-button
+{
+    background-color: #0D256E;
+    padding: 2rem 3rem;
+    color: white;
+    text-decoration: none;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.navbar
+{
+    margin-bottom: 0 !important;
+    background: #001142;
+    border-bottom: 2px solid black;
+}
+
+#l-intro-slider
+{
+    background-color: #001142;
+    color: white;
+    padding: 3rem 0;
+}
+
+#l-intro-slider h1
+{
+    color: white;
+}
+
+#l-intro-slider .l-slider ul li
+{
+    margin-bottom: 4rem;
+}
+
+
+.l-slider.l-controls
+{
+    clear: both;
+    text-align: center;
+}
+
+.l-slider.l-controls span
+{
+    padding: 0 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.l-top-gap
+{
+    margin-top: 5rem;
+}
+
+.l-top-gap-small
+{
+    margin-top: 2.5rem;
+}
+
+.l-top-gap-big
+{
+    margin-top: 8rem;
+}
+
+.l-bottom-gap
+{
+    margin-bottom: 5rem;
+}
+
+.l-bottom-gap-small
+{
+    margin-bottom: 2.5rem;
+}
+
+.l-bottom-gap-big
+{
+    margin-bottom: 8rem;
+}
+
+#l-menu-about-item
+{
+    margin-right: 1rem;
+}
+
+#l-contact-area .l-contact
+{
+    margin-top: 2rem;
+    border-left: 5px solid lightgrey;
+    padding-left: 1rem;
+}
+
+.l-danger-box
+{
+    background-color: red;
+    color: white;
+    padding: 1rem 3rem;
+}
+
+.l-danger-box a:link,
+.l-danger-box a:visited
+{
+    color: white;
+    text-decoration: underline;
+}
+
+.l-img-shadowed
+{
+    display: block;
+
+}
+
+.l-slider .l-text-content
+{
+    padding: 4rem;
+}
+
+#login-dropdown
+{
+    background: #001142;
+    border: none;
+}
+
+.navbar li span.glyphicon
+{
+    display: inline-block;
+    padding-right: 0.33rem;
+}
+
+.navbar li p
+{
+    margin: 0 !important;
+    padding: 15px 12px;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+.navbar li a
+{
+    color: white !important;
+}
+
+.navbar li a:hover,
+.navbar li p:hover
+{
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.dropdown-menu
+{
+    background-color: #001142;
+}
+
+.l-padding
+{
+    padding: 3rem;
+}
+
+footer#l-main-footer
+{
+    padding: 3rem;
+}
+
+@media screen and (max-width: 768px)
+{
+    #l-intro-whatis h2
+    {
+        font-size: 4rem;
+    }
 }

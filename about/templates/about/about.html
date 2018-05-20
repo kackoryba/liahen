@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Kontakt{% endblock title %}
+
+{% block content %}
+
+    <div class="row l-padding">
+
+        <div class = "page-header">
+
+            <h2>O liahni</h2>
+
+        </div>
+
+        <div class="col-md-5 col-md-offset-1 l-bottom-gap">
+
+            {% include 'about/contact.html' %}
+
+        </div>
+
+        <div class="col-md-5">
+
+            {% include 'about/project_details.html' %}
+
+        </div>
+
+    </div>
+
+{% endblock content %}

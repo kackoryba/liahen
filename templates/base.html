@@ -8,8 +8,12 @@
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" type="text/css"/>
         <link rel="stylesheet" href="{% static 'google-code-prettify/prettify.css' %}" type="text/css"/>
         <link rel="stylesheet" href="{% static 'selectize/dist/css/selectize.bootstrap3.css' %}" data-theme="bootstrap3">
-        <link rel="stylesheet" href="{% static 'own-style/own.css' %}" data-theme="bootstrap3">
         <link rel="stylesheet" href="{% static 'ksp_login/css/base.css' %}" type="text/css" />
+        <link rel="stylesheet" href="{% static 'own-style/own.css' %}">
+        <link rel="stylesheet" href="{% static 'unslider/unslider.css' %}" type="text/css" />
+        <link rel="stylesheet" href="{% static 'unslider/unslider-dots.css' %}" type="text/css" />
+        <link rel="stylesheet" href="{% static 'fresco/fresco.css' %}" />
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300">
 
         <title>Programátorská liaheň | {% block title %}{% endblock title %}</title>
 
@@ -23,10 +27,14 @@
         </div>
         {% include "footer.html" %}
 
-        <script src="{% static 'other-js/jquery-1.10.2.min.js' %}"></script>
+        <script src="{% static 'other-js/jquery-3.1.1.min.js' %}"></script>
         <script src="{% static 'file-input/bootstrap.file-input.js' %}"></script>
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'other-js/bootswatch.js' %}"></script>
+        <script src="{% static 'unslider/unslider-min.js' %}"></script>
+        <script src="{% static 'fresco/fresco.js' %}"></script>
+        <script src="{% static 'other-js/common.js' %}"></script>
+
         <script>$(document).ready(function(){$('input[type=file]').bootstrapFileInput();});</script>
 
         <script src = "{% static 'google-code-prettify/prettify.js' %}"></script>
@@ -45,8 +53,6 @@
                 sortField: 'text'
             });
         </script>
-
-        {% include "ksp_login/parts/include_javascript.html" %}
 
         <script>
             $('form :input[type=text]').addClass("form-control");

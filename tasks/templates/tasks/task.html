@@ -3,39 +3,87 @@
 {% block title %}{{ task.title }} (zadanie){% endblock title %}
 {% block content %}
 {% if task.is_public|is_false %} <div class = "non-public">{% endif %}
-   {% include 'tasks/task_header.html' %}
+    {% include 'tasks/task_header.html' %}
+
     <div class = "row">
-        <div class = "col-lg-7">
-            {{ task.rendered_text|safe }}
-        </div>
+
         {% if task.type == task.SUBMIT %}
-            <div class = "col-lg-5">
-                <div class = "col-lg-12" id = "submit">
-                    {% if error %}
-                        {% if error == "file-error" %}
-                            <div class="alert alert-dismissable alert-danger">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                Nastala chyba pri submite - <strong>nenačítal sa súbor</strong> alebo <strong>nepasuje koncovka</strong>.
-                            </div>
-                        {% elif error == "connect-error" %}
-                            <div class="alert alert-dismissable alert-danger">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                Z nejakého dôvodu sa <strong>nepodarilo pripojiť na testovač</strong>. Prosíme, <a href = "{% url 'about:intro' %}#contact" class = "alert-link">kontaktuj nás</a>.
-                            </div>
-                        {% else %}
-                            <div class="alert alert-dismissable alert-danger">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                Nastala bližšie neznáma chyba.
-                            </div>
-                        {% endif %}
-                    {% endif %}
-                        {% include "submit/send_solution.html" %}
-                </div>
-                <div class = "col-lg-12">
-                    {% include "submit/submits_user_task.html" %}
-                </div>
+
+            <div class="col-lg-7">
+
+                {{ task.rendered_text|safe }}
+
             </div>
+
+            <div class = "col-lg-5">
+
+                <div class = "col-lg-12" id = "submit">
+
+                    {% if error %}
+
+                        {% if error == "file-error" %}
+
+                            <div class="alert alert-dismissable alert-danger">
+
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+
+                                Nastala chyba pri submite - <strong>nenačítal sa súbor</strong> alebo <strong>nepasuje koncovka</strong>.
+
+                            </div>
+
+                        {% elif error == "connect-error" %}
+
+                            <div class="alert alert-dismissable alert-danger">
+
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+
+                                Z nejakého dôvodu sa <strong>nepodarilo pripojiť na testovač</strong>.
+                                Prosíme, <a href = "{% url 'about:intro' %}#contact" class = "alert-link">kontaktuj nás</a>.
+
+                            </div>
+
+                        {% else %}
+
+                            <div class="alert alert-dismissable alert-danger">
+
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+
+                                Nastala bližšie neznáma chyba.
+
+                            </div>
+
+                        {% endif %}
+
+                    {% endif %}
+
+                    {% include "submit/send_solution.html" %}
+
+                </div>
+
+                <div class = "col-lg-12">
+
+                    {% include "submit/submits_user_task.html" %}
+
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="col-md-2 col-sm-1"> </div>
+
+            <div class="col-md-8 col-sm-10">
+
+                {{ task.rendered_text|safe }}
+
+            </div>
+
+            <div class="col-md-2 col-sm-1"> </div>
+
         {% endif %}
+
     </div>
-{% if task.is_public|is_false %} </div>{% endif %}
+
+{% if task.is_public|is_false %} </div> {% endif %}
+
 {% endblock %}
